@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "555153307488",
+    "firebase_url": "https://akorex-default-rtdb.firebaseio.com",
+    "project_id": "akorex",
+    "storage_bucket": "akorex.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555153307488:android:518780f50a4b5b4d15d005",
+        "android_client_info": {
+          "package_name": "com.accuite.akorex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555153307488-9cmbtgc5irh8rekahd6fpn45p3m59vib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.accuite.akorex",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "555153307488-vnajb8nn85p6pmoi756u5btuju249978.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy11EfiAQ4Gmb1r7EP-8r6lvvNCl4lXRY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555153307488-vnajb8nn85p6pmoi756u5btuju249978.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "555153307488-72jtra4rnvqokajr7b6f30pcrfa5pmfe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.accuite.akorex"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
