@@ -31,7 +31,7 @@ class _PhotoWidgetState extends State<PhotoWidget> {
               width: 50,
               height: 50,
               child: CircularProgressIndicator(
-                color: Color(0xFFEFDF04),
+                color: FlutterFlowTheme.primaryColor,
               ),
             ),
           );
@@ -57,26 +57,28 @@ class _PhotoWidgetState extends State<PhotoWidget> {
           ),
           backgroundColor: Color(0xFFF5F5F5),
           body: SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 15),
-                  child: Image.network(
-                    photoPostsRecord.imageUrl,
-                    width: MediaQuery.of(context).size.width,
-                    fit: BoxFit.cover,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 15),
+                    child: Image.network(
+                      photoPostsRecord.imageUrl,
+                      width: MediaQuery.of(context).size.width,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                Text(
-                  photoPostsRecord.post,
-                  style: FlutterFlowTheme.bodyText1.override(
-                    fontFamily: 'Lato',
-                    color: Color(0xDF7F6289),
-                    fontSize: 15,
-                  ),
-                )
-              ],
+                  Text(
+                    photoPostsRecord.post,
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Lato',
+                      color: Color(0xDF7F6289),
+                      fontSize: 15,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         );

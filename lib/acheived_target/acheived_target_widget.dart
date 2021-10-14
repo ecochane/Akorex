@@ -177,7 +177,7 @@ class _AcheivedTargetWidgetState extends State<AcheivedTargetWidget> {
                                 width: 50,
                                 height: 50,
                                 child: CircularProgressIndicator(
-                                  color: Color(0xFFEFDF04),
+                                  color: FlutterFlowTheme.primaryColor,
                                 ),
                               ),
                             );

@@ -38,7 +38,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               width: 50,
               height: 50,
               child: CircularProgressIndicator(
-                color: Color(0xFFEFDF04),
+                color: FlutterFlowTheme.primaryColor,
               ),
             ),
           );
@@ -55,7 +55,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               },
               child: Icon(
                 Icons.arrow_back_rounded,
-                color: FlutterFlowTheme.primaryColor,
+                color: Color(0xC61D1D1E),
                 size: 24,
               ),
             ),
@@ -75,7 +75,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                   },
                   child: Icon(
                     Icons.edit_outlined,
-                    color: FlutterFlowTheme.primaryColor,
+                    color: Color(0xC61D1D1E),
                     size: 28,
                   ),
                 ),
@@ -121,6 +121,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                               width: MediaQuery.of(context).size.width,
                               height: 100,
                               decoration: BoxDecoration(
+                                color: Colors.white,
                                 image: DecorationImage(
                                   fit: BoxFit.fill,
                                   image: Image.asset(
@@ -132,240 +133,255 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 0, 16, 8),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 40, 0, 10),
-                                            child: Text(
-                                              detailsToDoListRecord.toDoName,
-                                              style: FlutterFlowTheme.title1
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                color: Color(0xFF332D34),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 16, 8),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 40, 0, 10),
+                                              child: Text(
+                                                detailsToDoListRecord.toDoName,
+                                                style: FlutterFlowTheme.title1
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: Color(0xFF332D34),
+                                                  fontSize: 25,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 60),
-                                    child: Text(
-                                      'Category  ${detailsToDoListRecord.category}',
-                                      style:
-                                          FlutterFlowTheme.subtitle1.override(
-                                        fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.primaryColor,
-                                        fontSize: 24,
+                                          )
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 0, 16, 8),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: StreamBuilder<ToDoListRecord>(
-                                            stream: ToDoListRecord.getDocument(
-                                                widget.taskdetails.reference),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50,
-                                                    height: 50,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      color: Color(0xFFEFDF04),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 10, 0, 60),
+                                      child: Text(
+                                        'Category  ${detailsToDoListRecord.category}',
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.primaryColor,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 16, 8),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child:
+                                                StreamBuilder<ToDoListRecord>(
+                                              stream:
+                                                  ToDoListRecord.getDocument(
+                                                      widget.taskdetails
+                                                          .reference),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50,
+                                                      height: 50,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        color: FlutterFlowTheme
+                                                            .primaryColor,
+                                                      ),
                                                     ),
+                                                  );
+                                                }
+                                                final textToDoListRecord =
+                                                    snapshot.data;
+                                                return Text(
+                                                  textToDoListRecord
+                                                      .toDoDescription,
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
+                                                      .override(
+                                                    fontFamily: 'Lato',
+                                                    color: Color(0x86200129),
                                                   ),
                                                 );
-                                              }
-                                              final textToDoListRecord =
-                                                  snapshot.data;
-                                              return Text(
-                                                textToDoListRecord
-                                                    .toDoDescription,
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Lato',
-                                                  color: Color(0x86200129),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Divider(
-                                    indent: 16,
-                                    endIndent: 16,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 8, 16, 8),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            ' Target Due By',
-                                            style: FlutterFlowTheme.subtitle1
-                                                .override(
-                                              fontFamily: 'Poppins',
+                                              },
                                             ),
-                                          ),
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 0, 16, 4),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            dateTimeFormat('MMMMEEEEd',
-                                                detailsToDoListRecord.toDoDate),
-                                            style: FlutterFlowTheme.title2
-                                                .override(
-                                              fontFamily: 'Quicksand',
-                                            ),
-                                          ),
-                                        )
-                                      ],
+                                    Divider(
+                                      indent: 16,
+                                      endIndent: 16,
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 10),
-                                    child: Text(
-                                      'Every  ${detailsToDoListRecord.every}',
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 10, 0, 10),
+                                      child: Text(
+                                        'Every  ${detailsToDoListRecord.every}',
+                                        style:
+                                            FlutterFlowTheme.subtitle1.override(
+                                          fontFamily: 'Poppins',
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      'At  ${detailsToDoListRecord.time}',
                                       style:
                                           FlutterFlowTheme.subtitle1.override(
                                         fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    'At  ${detailsToDoListRecord.time}',
-                                    style: FlutterFlowTheme.subtitle1.override(
-                                      fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.primaryColor,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 16, 0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        setState(() => _loadingButton1 = true);
-                                        try {
-                                          final toDoListUpdateData =
-                                              createToDoListRecordData(
-                                            toDoState: true,
-                                          );
-                                          await detailsToDoListRecord.reference
-                                              .update(toDoListUpdateData);
-                                          await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => NavBarPage(
-                                                  initialPage:
-                                                      'AcheivedTarget'),
-                                            ),
-                                          );
-                                        } finally {
-                                          setState(
-                                              () => _loadingButton1 = false);
-                                        }
-                                      },
-                                      text: 'Mark As Complete',
-                                      options: FFButtonOptions(
-                                        width: 300,
-                                        height: 56,
                                         color: FlutterFlowTheme.primaryColor,
-                                        textStyle:
-                                            FlutterFlowTheme.subtitle2.override(
-                                          fontFamily: 'Quicksand',
-                                          color: Color(0xFF332D34),
-                                        ),
-                                        elevation: 0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 0,
-                                        ),
-                                        borderRadius: 25,
                                       ),
-                                      loading: _loadingButton1,
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 16, 0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        setState(() => _loadingButton2 = true);
-                                        try {
-                                          await detailsToDoListRecord.reference
-                                              .delete();
-                                          await Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => NavBarPage(
-                                                  initialPage: 'routine'),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 8, 16, 8),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              ' Target Due By',
+                                              style: FlutterFlowTheme.subtitle1
+                                                  .override(
+                                                fontFamily: 'Poppins',
+                                              ),
                                             ),
-                                            (r) => false,
-                                          );
-                                        } finally {
-                                          setState(
-                                              () => _loadingButton2 = false);
-                                        }
-                                      },
-                                      text: 'Delete Task',
-                                      icon: Icon(
-                                        Icons.delete_sweep_rounded,
-                                        size: 15,
+                                          )
+                                        ],
                                       ),
-                                      options: FFButtonOptions(
-                                        width: 160,
-                                        height: 50,
-                                        color: Color(0x20FFFFFF),
-                                        textStyle:
-                                            FlutterFlowTheme.subtitle2.override(
-                                          fontFamily: 'Quicksand',
-                                          color: Color(0xFFFA4C0C),
-                                        ),
-                                        elevation: 0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 0,
-                                        ),
-                                        borderRadius: 25,
-                                      ),
-                                      loading: _loadingButton2,
                                     ),
-                                  )
-                                ],
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 16, 4),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              dateTimeFormat(
+                                                  'MMMMEEEEd',
+                                                  detailsToDoListRecord
+                                                      .toDoDate),
+                                              style: FlutterFlowTheme.title2
+                                                  .override(
+                                                fontFamily: 'Quicksand',
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 90, 0, 0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          setState(
+                                              () => _loadingButton1 = true);
+                                          try {
+                                            final toDoListUpdateData =
+                                                createToDoListRecordData(
+                                              toDoState: true,
+                                            );
+                                            await detailsToDoListRecord
+                                                .reference
+                                                .update(toDoListUpdateData);
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    NavBarPage(
+                                                        initialPage:
+                                                            'AcheivedTarget'),
+                                              ),
+                                            );
+                                          } finally {
+                                            setState(
+                                                () => _loadingButton1 = false);
+                                          }
+                                        },
+                                        text: 'Target Acheived',
+                                        options: FFButtonOptions(
+                                          width: 200,
+                                          height: 50,
+                                          color: Color(0xFFFBF492),
+                                          textStyle: FlutterFlowTheme.subtitle2
+                                              .override(
+                                            fontFamily: 'Quicksand',
+                                            color: Color(0xFF332D34),
+                                          ),
+                                          elevation: 0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 0,
+                                          ),
+                                          borderRadius: 8,
+                                        ),
+                                        loading: _loadingButton1,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 6, 0, 0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          setState(
+                                              () => _loadingButton2 = true);
+                                          try {
+                                            await detailsToDoListRecord
+                                                .reference
+                                                .delete();
+                                            await Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    NavBarPage(
+                                                        initialPage: 'routine'),
+                                              ),
+                                              (r) => false,
+                                            );
+                                          } finally {
+                                            setState(
+                                                () => _loadingButton2 = false);
+                                          }
+                                        },
+                                        text: 'Delete Task',
+                                        icon: Icon(
+                                          Icons.delete_sweep_rounded,
+                                          size: 15,
+                                        ),
+                                        options: FFButtonOptions(
+                                          width: 160,
+                                          height: 50,
+                                          color: Color(0x20FFFFFF),
+                                          textStyle: FlutterFlowTheme.subtitle2
+                                              .override(
+                                            fontFamily: 'Quicksand',
+                                            color: Color(0xFFFA4C0C),
+                                          ),
+                                          elevation: 0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 0,
+                                          ),
+                                          borderRadius: 25,
+                                        ),
+                                        loading: _loadingButton2,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             )
                           ],

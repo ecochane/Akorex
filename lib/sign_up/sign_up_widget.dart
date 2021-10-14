@@ -46,7 +46,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xD52D2C2D),
+      backgroundColor: Color(0xD5737373),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
@@ -393,48 +393,74 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                  child: InkWell(
-                    onTap: () async {
-                      final selectedMedia =
-                          await selectMediaWithSourceBottomSheet(
-                        context: context,
-                        allowPhoto: true,
-                      );
-                      if (selectedMedia != null &&
-                          validateFileFormat(
-                              selectedMedia.storagePath, context)) {
-                        showUploadMessage(context, 'Uploading file...',
-                            showLoading: true);
-                        final downloadUrl = await uploadData(
-                            selectedMedia.storagePath, selectedMedia.bytes);
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                        if (downloadUrl != null) {
-                          setState(() => uploadedFileUrl = downloadUrl);
-                          showUploadMessage(context, 'Success!');
-                        } else {
-                          showUploadMessage(context, 'Failed to upload media');
-                          return;
-                        }
-                      }
-                    },
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Image.network(
-                        valueOrDefault<String>(
-                          uploadedFileUrl,
-                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/finance-app-sample-kugwu4/assets/ijvuhvqbvns6/uiAvatar@2x.png',
+                Stack(
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0, 0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: InkWell(
+                          onTap: () async {
+                            final selectedMedia =
+                                await selectMediaWithSourceBottomSheet(
+                              context: context,
+                              allowPhoto: true,
+                            );
+                            if (selectedMedia != null &&
+                                validateFileFormat(
+                                    selectedMedia.storagePath, context)) {
+                              showUploadMessage(context, 'Uploading file...',
+                                  showLoading: true);
+                              final downloadUrl = await uploadData(
+                                  selectedMedia.storagePath,
+                                  selectedMedia.bytes);
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
+                              if (downloadUrl != null) {
+                                setState(() => uploadedFileUrl = downloadUrl);
+                                showUploadMessage(context, 'Success!');
+                              } else {
+                                showUploadMessage(
+                                    context, 'Failed to upload media');
+                                return;
+                              }
+                            }
+                          },
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.network(
+                              valueOrDefault<String>(
+                                uploadedFileUrl,
+                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/finance-app-sample-kugwu4/assets/ijvuhvqbvns6/uiAvatar@2x.png',
+                              ),
+                            ),
+                          ),
                         ),
-                        fit: BoxFit.fitWidth,
                       ),
                     ),
-                  ),
+                    Align(
+                      alignment: AlignmentDirectional(0, 0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Container(
+                          width: 60,
+                          height: 60,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Image.network(
+                            uploadedFileUrl,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
@@ -475,10 +501,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 displayName: fullnameController.text,
                                 createdTime: getCurrentTimestamp,
                                 password: passwordController.text,
-                                profilePicUrl: '',
+                                profilePicUrl: uploadedFileUrl,
                                 bio: '',
                                 website: '',
-                                photoUrl: '',
+                                photoUrl: uploadedFileUrl,
                                 phoneNumber: '',
                               );
                               await UsersRecord.collection

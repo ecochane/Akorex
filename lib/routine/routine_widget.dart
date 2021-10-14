@@ -256,7 +256,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                         width: 50,
                                         height: 50,
                                         child: CircularProgressIndicator(
-                                          color: Color(0xFFEFDF04),
+                                          color: FlutterFlowTheme.primaryColor,
                                         ),
                                       ),
                                     );
@@ -499,7 +499,8 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                                                   ),
                                                                 ),
                                                                 Text(
-                                                                  'Acheive Target: By ${listViewToDoListRecord.toDoDate.toString()}',
+                                                                  listViewToDoListRecord
+                                                                      .category,
                                                                   textAlign:
                                                                       TextAlign
                                                                           .end,
@@ -555,7 +556,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                         width: 50,
                                         height: 50,
                                         child: CircularProgressIndicator(
-                                          color: Color(0xFFEFDF04),
+                                          color: FlutterFlowTheme.primaryColor,
                                         ),
                                       ),
                                     );
@@ -797,7 +798,8 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                                                   ),
                                                                 ),
                                                                 Text(
-                                                                  'Acheive Target: By ${listViewToDoListRecord.toDoDate.toString()}',
+                                                                  listViewToDoListRecord
+                                                                      .category,
                                                                   textAlign:
                                                                       TextAlign
                                                                           .end,
@@ -853,7 +855,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                         width: 50,
                                         height: 50,
                                         child: CircularProgressIndicator(
-                                          color: Color(0xFFEFDF04),
+                                          color: FlutterFlowTheme.primaryColor,
                                         ),
                                       ),
                                     );
@@ -1095,7 +1097,8 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                                                   ),
                                                                 ),
                                                                 Text(
-                                                                  'Acheive Target: By ${dateTimeFormat('MMMEd', listViewToDoListRecord.toDoDate)}',
+                                                                  listViewToDoListRecord
+                                                                      .category,
                                                                   textAlign:
                                                                       TextAlign
                                                                           .end,

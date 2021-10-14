@@ -261,7 +261,7 @@ class _AddtaskWidgetState extends State<AddtaskWidget> {
                         onConfirm: (date) {
                           setState(() => datePicked = date);
                         },
-                        currentTime: DateTime.now(),
+                        currentTime: getCurrentTimestamp,
                       );
                     },
                     child: Container(
@@ -332,17 +332,17 @@ class _AddtaskWidgetState extends State<AddtaskWidget> {
                         options: FFButtonOptions(
                           width: 130,
                           height: 50,
-                          color: Color(0x86200129),
+                          color: Color(0xFFF5F5F4),
                           textStyle: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Quicksand',
-                            color: Colors.white,
+                            color: Color(0xA51D1D1E),
                           ),
                           elevation: 0,
                           borderSide: BorderSide(
-                            color: Colors.transparent,
+                            color: Color(0x94EFDF04),
                             width: 1,
                           ),
-                          borderRadius: 25,
+                          borderRadius: 8,
                         ),
                         loading: _loadingButton1,
                       ),
@@ -363,7 +363,14 @@ class _AddtaskWidgetState extends State<AddtaskWidget> {
                             await ToDoListRecord.collection
                                 .doc()
                                 .set(toDoListCreateData);
-                            Navigator.pop(context);
+                            await Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    NavBarPage(initialPage: 'routine'),
+                              ),
+                              (r) => false,
+                            );
                           } finally {
                             setState(() => _loadingButton2 = false);
                           }
@@ -371,8 +378,8 @@ class _AddtaskWidgetState extends State<AddtaskWidget> {
                         text: 'Create Task',
                         options: FFButtonOptions(
                           width: 130,
-                          height: 50,
-                          color: FlutterFlowTheme.primaryColor,
+                          height: 45,
+                          color: Color(0xFFFBF26B),
                           textStyle: FlutterFlowTheme.subtitle2.override(
                             fontFamily: 'Quicksand',
                             color: Color(0xFF332D34),
@@ -382,7 +389,7 @@ class _AddtaskWidgetState extends State<AddtaskWidget> {
                             color: Colors.transparent,
                             width: 1,
                           ),
-                          borderRadius: 25,
+                          borderRadius: 8,
                         ),
                         loading: _loadingButton2,
                       )

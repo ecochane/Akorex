@@ -34,7 +34,7 @@ class _ProfilePageCopyWidgetState extends State<ProfilePageCopyWidget> {
               width: 50,
               height: 50,
               child: CircularProgressIndicator(
-                color: Color(0xFFEFDF04),
+                color: FlutterFlowTheme.primaryColor,
               ),
             ),
           );
@@ -221,7 +221,7 @@ class _ProfilePageCopyWidgetState extends State<ProfilePageCopyWidget> {
                                 width: 50,
                                 height: 50,
                                 child: CircularProgressIndicator(
-                                  color: Color(0xFFEFDF04),
+                                  color: FlutterFlowTheme.primaryColor,
                                 ),
                               ),
                             );
@@ -270,7 +270,8 @@ class _ProfilePageCopyWidgetState extends State<ProfilePageCopyWidget> {
                         stream: queryPostsRecord(
                           queryBuilder: (postsRecord) => postsRecord.where(
                               'username',
-                              isEqualTo: profilePageCopyUsersRecord.username),
+                              isEqualTo:
+                                  profilePageCopyUsersRecord.displayName),
                           limit: 12,
                         ),
                         builder: (context, snapshot) {
@@ -281,7 +282,7 @@ class _ProfilePageCopyWidgetState extends State<ProfilePageCopyWidget> {
                                 width: 50,
                                 height: 50,
                                 child: CircularProgressIndicator(
-                                  color: Color(0xFFEFDF04),
+                                  color: FlutterFlowTheme.primaryColor,
                                 ),
                               ),
                             );

@@ -33,7 +33,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xD52D2C2D),
+      backgroundColor: Color(0xD5737373),
       body: SafeArea(
         child: Stack(
           children: [

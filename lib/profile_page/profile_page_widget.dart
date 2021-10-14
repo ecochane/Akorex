@@ -34,7 +34,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
               width: 50,
               height: 50,
               child: CircularProgressIndicator(
-                color: Color(0xFFEFDF04),
+                color: FlutterFlowTheme.primaryColor,
               ),
             ),
           );
@@ -77,7 +77,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                               profilePageUsersRecord.username,
                               style: FlutterFlowTheme.bodyText1.override(
                                 fontFamily: 'Raleway',
-                                color: Color(0xFF5F5563),
+                                color: Color(0xFF353136),
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -158,10 +158,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                           AlignmentDirectional(-0.4, -0.02),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            1, 0, 0, 0),
+                                            15, 15, 0, 0),
                                         child: Container(
-                                          width: 100,
-                                          height: 100,
+                                          width: 70,
+                                          height: 70,
                                           clipBehavior: Clip.antiAlias,
                                           decoration: BoxDecoration(
                                             shape: BoxShape.circle,
@@ -215,7 +215,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Lato',
-                                        color: Color(0xFF5F5563),
+                                        color: Color(0xFF232124),
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -228,7 +228,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                         style:
                                             FlutterFlowTheme.bodyText1.override(
                                           fontFamily: 'Lato',
-                                          color: Color(0x8E8F7499),
+                                          color: Color(0xB8433D45),
                                           fontSize: 15,
                                         ),
                                       ),
@@ -250,7 +250,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 width: 50,
                                 height: 50,
                                 child: CircularProgressIndicator(
-                                  color: Color(0xFFEFDF04),
+                                  color: FlutterFlowTheme.primaryColor,
                                 ),
                               ),
                             );
@@ -301,7 +301,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                           text: 'Edit Profile',
                           options: FFButtonOptions(
                             height: 46,
-                            color: FlutterFlowTheme.primaryColor,
+                            color: Color(0xFFF5F5F4),
                             textStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Lato',
                               color: Color(0xFF332D34),
@@ -309,9 +309,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                             ),
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.primaryColor,
-                              width: 0,
+                              width: 1,
                             ),
-                            borderRadius: 80,
+                            borderRadius: 8,
                           ),
                           loading: _loadingButton,
                         ),
@@ -348,7 +348,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                       width: 50,
                                       height: 50,
                                       child: CircularProgressIndicator(
-                                        color: Color(0xFFEFDF04),
+                                        color: FlutterFlowTheme.primaryColor,
                                       ),
                                     ),
                                   );
@@ -395,7 +395,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                         stream: queryPostsRecord(
                           queryBuilder: (postsRecord) => postsRecord.where(
                               'username',
-                              isEqualTo: profilePageUsersRecord.username),
+                              isEqualTo: profilePageUsersRecord.displayName),
                           limit: 12,
                         ),
                         builder: (context, snapshot) {
@@ -406,7 +406,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 width: 50,
                                 height: 50,
                                 child: CircularProgressIndicator(
-                                  color: Color(0xFFEFDF04),
+                                  color: FlutterFlowTheme.primaryColor,
                                 ),
                               ),
                             );

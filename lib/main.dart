@@ -136,7 +136,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.group_outlined,
-              size: 24,
+              size: 25,
             ),
             label: 'Home',
             tooltip: '',
@@ -152,8 +152,8 @@ class _NavBarPageState extends State<NavBarPage> {
         ],
         backgroundColor: Colors.white,
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: Color(0xFFEFDF04),
-        unselectedItemColor: Color(0xFFEFDF04),
+        selectedItemColor: Color(0xEA1A1A1A),
+        unselectedItemColor: Color(0xFF050505),
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         showSelectedLabels: false,
         showUnselectedLabels: false,

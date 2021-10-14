@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/place.dart';
 import '../flutter_flow/upload_media.dart';
+import '../main.dart';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -44,8 +45,8 @@ class _PostWidgetState extends State<PostWidget> {
           'Share Progress',
           style: FlutterFlowTheme.title2.override(
             fontFamily: 'Lexend Deca',
-            color: Color(0x84474748),
-            fontSize: 22,
+            color: Color(0xA51D1D1E),
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -96,6 +97,7 @@ class _PostWidgetState extends State<PostWidget> {
                                     await selectMediaWithSourceBottomSheet(
                                   context: context,
                                   allowPhoto: true,
+                                  allowVideo: true,
                                 );
                                 if (selectedMedia != null &&
                                     validateFileFormat(
@@ -141,6 +143,12 @@ class _PostWidgetState extends State<PostWidget> {
                                   border: Border.all(
                                     color: FlutterFlowTheme.primaryColor,
                                   ),
+                                ),
+                                child: Image.network(
+                                  uploadedFileUrl,
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),
@@ -249,14 +257,22 @@ class _PostWidgetState extends State<PostWidget> {
                         location: placePickerValue.latLng,
                       );
                       await PostsRecord.collection.doc().set(postsCreateData);
+                      await Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              NavBarPage(initialPage: 'FeedPage'),
+                        ),
+                        (r) => false,
+                      );
                     } finally {
                       setState(() => _loadingButton = false);
                     }
                   },
                   text: 'Create Post',
                   options: FFButtonOptions(
-                    width: 270,
-                    height: 60,
+                    width: 150,
+                    height: 45,
                     color: FlutterFlowTheme.primaryColor,
                     textStyle: FlutterFlowTheme.subtitle2.override(
                       fontFamily: 'Lexend Deca',

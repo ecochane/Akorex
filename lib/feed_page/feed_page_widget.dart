@@ -47,8 +47,8 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                     children: [
                       Image.asset(
                         'assets/images/imageedit_2_8146002034.png',
-                        width: 50,
-                        height: 40,
+                        width: 40,
+                        height: 30,
                         fit: BoxFit.cover,
                       ),
                       Padding(
@@ -92,7 +92,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                               },
                               child: Icon(
                                 Icons.add_box_outlined,
-                                color: Color(0xFF5F5563),
+                                color: Color(0xFF353136),
                                 size: 25,
                               ),
                             ),
@@ -107,10 +107,10 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 2, 0),
+                                        5, 5, 0, 0),
                                     child: Icon(
                                       Icons.favorite_border,
-                                      color: Color(0xFF5F5563),
+                                      color: Color(0xFF353136),
                                       size: 25,
                                     ),
                                   ),
@@ -137,7 +137,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                             },
                             child: Icon(
                               Icons.send,
-                              color: Color(0xFF5F5563),
+                              color: Color(0xFF353136),
                               size: 25,
                             ),
                           )
@@ -170,7 +170,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                   width: 50,
                                   height: 50,
                                   child: CircularProgressIndicator(
-                                    color: Color(0xFFEFDF04),
+                                    color: FlutterFlowTheme.primaryColor,
                                   ),
                                 ),
                               );
@@ -213,8 +213,8 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                 );
                                               },
                                               child: Container(
-                                                width: 90,
-                                                height: 90,
+                                                width: 60,
+                                                height: 60,
                                                 clipBehavior: Clip.antiAlias,
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
@@ -243,8 +243,8 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                 );
                                               },
                                               child: Container(
-                                                width: 38,
-                                                height: 38,
+                                                width: 34,
+                                                height: 34,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme
                                                       .primaryColor,
@@ -267,7 +267,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                   child: Icon(
                                                     Icons.add,
                                                     color: Colors.white,
-                                                    size: 24,
+                                                    size: 18,
                                                   ),
                                                 ),
                                               ),
@@ -292,7 +292,8 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                             width: 50,
                                             height: 50,
                                             child: CircularProgressIndicator(
-                                              color: Color(0xFFEFDF04),
+                                              color:
+                                                  FlutterFlowTheme.primaryColor,
                                             ),
                                           ),
                                         );
@@ -306,7 +307,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.1,
+                                                0.09,
                                             fit: BoxFit.fitWidth,
                                           ),
                                         );
@@ -319,7 +320,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                           final rowFollowsRecord =
                                               rowFollowsRecordList[rowIndex];
                                           return Container(
-                                            width: 100,
+                                            width: 70,
                                             height: 100,
                                             child: Stack(
                                               children: [
@@ -328,8 +329,8 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                       AlignmentDirectional(
                                                           0, 0),
                                                   child: Container(
-                                                    width: 100,
-                                                    height: 100,
+                                                    width: 65,
+                                                    height: 65,
                                                     decoration: BoxDecoration(
                                                       color: Color(0xB6EFDF04),
                                                       shape: BoxShape.circle,
@@ -355,16 +356,19 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                       );
                                                     },
                                                     child: Container(
-                                                      width: 90,
-                                                      height: 90,
+                                                      width: 60,
+                                                      height: 60,
                                                       clipBehavior:
                                                           Clip.antiAlias,
                                                       decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                       ),
                                                       child: Image.network(
-                                                        rowFollowsRecord
-                                                            .followingProfilePic,
+                                                        valueOrDefault<String>(
+                                                          rowFollowsRecord
+                                                              .followingProfilePic,
+                                                          'https://www.kindpng.com/picc/m/24-248273_profile-image-png-of-a-woman-female-profile.png',
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -403,7 +407,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                               width: 50,
                               height: 50,
                               child: CircularProgressIndicator(
-                                color: Color(0xFFEFDF04),
+                                color: FlutterFlowTheme.primaryColor,
                               ),
                             ),
                           );
@@ -492,8 +496,8 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                     .bodyText1
                                                     .override(
                                                   fontFamily: 'Lato',
-                                                  color: Color(0xA4626264),
-                                                  fontSize: 18,
+                                                  color: Color(0xD8262628),
+                                                  fontSize: 15,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -520,7 +524,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                             Icons.keyboard_control,
                                             color:
                                                 FlutterFlowTheme.primaryColor,
-                                            size: 30,
+                                            size: 25,
                                           ),
                                         ),
                                       )
@@ -530,61 +534,12 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                 Image.network(
                                   listViewPostsRecord.imageUrl,
                                   width: double.infinity,
+                                  height: 30,
                                   fit: BoxFit.fitWidth,
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      15, 9, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        listViewPostsRecord.post,
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Lato',
-                                          color: Color(0xFF7F6289),
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 10, 0, 10),
-                                  child: StreamBuilder<List<LikesRecord>>(
-                                    stream: queryLikesRecord(),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: CircularProgressIndicator(
-                                              color: Color(0xFFEFDF04),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<LikesRecord>
-                                          containerLikesRecordList =
-                                          snapshot.data;
-                                      return Container(
-                                        width: double.infinity,
-                                        height: 1,
-                                        decoration: BoxDecoration(
-                                          color: Color(0x45EEEEEE),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 5, 0, 30),
+                                      0, 5, 0, 5),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
@@ -644,7 +599,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                   Icons.favorite_border_sharp,
                                                   color: FlutterFlowTheme
                                                       .primaryColor,
-                                                  size: 29,
+                                                  size: 22,
                                                 ),
                                               ),
                                             )
@@ -663,7 +618,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                               Icons.send,
                                               color:
                                                   FlutterFlowTheme.primaryColor,
-                                              size: 30,
+                                              size: 22,
                                             ),
                                           )
                                         ],
@@ -755,11 +710,62 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                             Icons.bookmark_border_outlined,
                                             color:
                                                 FlutterFlowTheme.primaryColor,
-                                            size: 30,
+                                            size: 22,
                                           ),
                                         ),
                                       )
                                     ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15, 5, 0, 10),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        listViewPostsRecord.post,
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Lato',
+                                          color: Color(0xFF7F6289),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 10, 0, 10),
+                                  child: StreamBuilder<List<LikesRecord>>(
+                                    stream: queryLikesRecord(),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50,
+                                            height: 50,
+                                            child: CircularProgressIndicator(
+                                              color:
+                                                  FlutterFlowTheme.primaryColor,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<LikesRecord>
+                                          containerLikesRecordList =
+                                          snapshot.data;
+                                      return Container(
+                                        width: double.infinity,
+                                        height: 1,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x45EEEEEE),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 )
                               ],
