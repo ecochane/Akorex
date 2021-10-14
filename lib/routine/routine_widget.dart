@@ -1,6 +1,8 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../details/details_widget.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
+import '../flutter_flow/flutter_flow_calendar.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
@@ -19,18 +21,49 @@ class RoutineWidget extends StatefulWidget {
   _RoutineWidgetState createState() => _RoutineWidgetState();
 }
 
-class _RoutineWidgetState extends State<RoutineWidget> {
+class _RoutineWidgetState extends State<RoutineWidget>
+    with TickerProviderStateMixin {
+  DateTimeRange calendarSelectedDay;
   bool _loadingButton1 = false;
   bool _loadingButton2 = false;
   bool _loadingButton3 = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final animationsMap = {
+    'calendarOnPageLoadAnimation': AnimationInfo(
+      curve: Curves.easeIn,
+      trigger: AnimationTrigger.onPageLoad,
+      duration: 600,
+      fadeIn: true,
+    ),
+    'tabBarOnPageLoadAnimation': AnimationInfo(
+      curve: Curves.easeIn,
+      trigger: AnimationTrigger.onPageLoad,
+      duration: 600,
+      fadeIn: true,
+    ),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    startPageLoadAnimations(
+      animationsMap.values
+          .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
+      this,
+    );
+
+    calendarSelectedDay = DateTimeRange(
+      start: DateTime.now().startOfDay,
+      end: DateTime.now().endOfDay,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: Color(0xFF1B0434),
         iconTheme: IconThemeData(color: Colors.white),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
@@ -41,7 +74,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
           icon: Icon(
             Icons.face_unlock_rounded,
             color: Colors.white,
-            size: 30,
+            size: 28,
           ),
           onPressed: () async {
             await Navigator.push(
@@ -53,7 +86,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
           },
         ),
         title: Text(
-          'Personal Care Routine',
+          'Self Care Routine',
           style: FlutterFlowTheme.bodyText1.override(
             fontFamily: 'Lato',
             color: Colors.white,
@@ -76,7 +109,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
               child: FaIcon(
                 FontAwesomeIcons.leaf,
                 color: Colors.white,
-                size: 24,
+                size: 20,
               ),
             ),
           )
@@ -84,7 +117,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print('FloatingActionButton pressed ...');
@@ -115,101 +148,154 @@ class _RoutineWidgetState extends State<RoutineWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.2,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.primaryColor,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: Image.asset(
-                    'assets/images/White_and_Blue_Multicolored_Earth_Day_Zoom_Virtual_Background_(1).png',
-                  ).image,
+            Material(
+              color: Colors.transparent,
+              elevation: 0,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.18,
+                decoration: BoxDecoration(
+                  color: Color(0xFF1B0434),
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: Image.asset(
+                      'assets/images/White_and_Blue_Multicolored_Earth_Day_Zoom_Virtual_Background_(4).png',
+                    ).image,
+                  ),
+                  border: Border.all(
+                    color: Color(0xFF523071),
+                    width: 0,
+                  ),
                 ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Stack(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional(0.9, 0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                          child: Container(
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Color(0xFFFCFCFC),
-                                width: 3,
-                              ),
-                            ),
-                            child: Align(
-                              alignment: AlignmentDirectional(0.9, 0),
-                              child: AuthUserStreamWidget(
-                                child: InkWell(
-                                  onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => NavBarPage(
-                                            initialPage: 'ProfilePage'),
+                      Stack(
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(0.9, 0),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.primaryColor,
+                                    width: 3,
+                                  ),
+                                ),
+                                child: Align(
+                                  alignment: AlignmentDirectional(0.9, 0),
+                                  child: AuthUserStreamWidget(
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'ProfilePage'),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 60,
+                                        height: 60,
+                                        clipBehavior: Clip.antiAlias,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Image.network(
+                                          valueOrDefault<String>(
+                                            currentUserPhoto,
+                                            'https://www.kindpng.com/picc/m/24-248273_profile-image-png-of-a-woman-female-profile.png',
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
-                                    );
-                                  },
-                                  child: Container(
-                                    width: 60,
-                                    height: 60,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Image.network(
-                                      valueOrDefault<String>(
-                                        currentUserPhoto,
-                                        'https://www.kindpng.com/picc/m/24-248273_profile-image-png-of-a-woman-female-profile.png',
-                                      ),
-                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                               ),
+                            ),
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
+                        child: AuthUserStreamWidget(
+                          child: Text(
+                            'Hi   ${currentUserDisplayName}!',
+                            style: FlutterFlowTheme.title1.override(
+                              fontFamily: 'Raleway',
+                              color: Colors.white,
+                              fontSize: 22,
                             ),
                           ),
                         ),
                       )
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
-                    child: AuthUserStreamWidget(
-                      child: Text(
-                        'Hi   ${currentUserDisplayName}!',
-                        style: FlutterFlowTheme.title1.override(
-                          fontFamily: 'Raleway',
-                          color: Colors.white,
-                          fontSize: 22,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+                ),
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 150,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: Image.asset(
+                    'assets/images/Untitled_design_(2).png',
+                  ).image,
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(40, 0, 20, 0),
+                child: FlutterFlowCalendar(
+                  color: FlutterFlowTheme.primaryColor,
+                  iconColor: FlutterFlowTheme.primaryColor,
+                  weekFormat: true,
+                  weekStartsMonday: true,
+                  onChange: (DateTimeRange newSelectedDate) {
+                    setState(() => calendarSelectedDay = newSelectedDate);
+                  },
+                  titleStyle: GoogleFonts.getFont(
+                    'Raleway',
+                    color: Color(0xFF38155E),
+                  ),
+                  dayOfWeekStyle: GoogleFonts.getFont(
+                    'Raleway',
+                    color: FlutterFlowTheme.primaryColor,
+                  ),
+                  dateStyle: GoogleFonts.getFont(
+                    'Raleway',
+                  ),
+                  selectedDateStyle: GoogleFonts.getFont(
+                    'Raleway',
+                  ),
+                  inactiveDateStyle: TextStyle(
+                    color: Color(0xFF38155E),
+                  ),
+                ).animated([animationsMap['calendarOnPageLoadAnimation']]),
               ),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(20, 10, 10, 0),
                 child: DefaultTabController(
                   length: 3,
                   initialIndex: 0,
                   child: Column(
                     children: [
                       TabBar(
-                        labelColor: Color(0xE4302036),
-                        unselectedLabelColor: Color(0x9437283C),
+                        labelColor: Color(0xEA251339),
+                        unselectedLabelColor: Color(0xEA250E3D),
                         indicatorColor: Color(0x55EFDF04),
                         indicatorWeight: 1,
                         tabs: [
@@ -238,7 +324,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                           children: [
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 20, 20, 2),
+                                  EdgeInsetsDirectional.fromSTEB(20, 60, 40, 2),
                               child: StreamBuilder<List<ToDoListRecord>>(
                                 stream: queryToDoListRecord(
                                   queryBuilder: (toDoListRecord) =>
@@ -267,7 +353,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                   if (listViewToDoListRecordList.isEmpty) {
                                     return Center(
                                       child: Image.asset(
-                                        'assets/images/cb74ed4cf93e363b83fc527d16ad54d7.gif',
+                                        'assets/images/output-onlinegiftools_(1).gif',
                                       ),
                                     );
                                   }
@@ -283,7 +369,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                               listViewIndex];
                                       return Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 20),
+                                            0, 0, 0, 40),
                                         child: Container(
                                           width:
                                               MediaQuery.of(context).size.width,
@@ -297,7 +383,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                               ).image,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(8),
+                                                BorderRadius.circular(20),
                                           ),
                                           child: Container(
                                             width: MediaQuery.of(context)
@@ -305,9 +391,9 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                                 .width,
                                             height: 100,
                                             decoration: BoxDecoration(
-                                              color: Color(0x751C0125),
+                                              color: Color(0xFF2D1547),
                                               borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(13),
                                             ),
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
@@ -567,7 +653,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                   if (listViewToDoListRecordList.isEmpty) {
                                     return Center(
                                       child: Image.asset(
-                                        'assets/images/cb74ed4cf93e363b83fc527d16ad54d7.gif',
+                                        'assets/images/output-onlinegiftools_(1).gif',
                                       ),
                                     );
                                   }
@@ -837,7 +923,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 20, 20, 2),
+                                  EdgeInsetsDirectional.fromSTEB(30, 20, 13, 2),
                               child: StreamBuilder<List<ToDoListRecord>>(
                                 stream: queryToDoListRecord(
                                   queryBuilder: (toDoListRecord) =>
@@ -866,7 +952,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                                   if (listViewToDoListRecordList.isEmpty) {
                                     return Center(
                                       child: Image.asset(
-                                        'assets/images/cb74ed4cf93e363b83fc527d16ad54d7.gif',
+                                        'assets/images/output-onlinegiftools_(1).gif',
                                       ),
                                     );
                                   }
@@ -1139,7 +1225,7 @@ class _RoutineWidgetState extends State<RoutineWidget> {
                       ),
                     ],
                   ),
-                ),
+                ).animated([animationsMap['tabBarOnPageLoadAnimation']]),
               ),
             )
           ],

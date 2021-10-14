@@ -225,6 +225,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                         .profilePicUrl,
                                                     'https://www.kindpng.com/picc/m/24-248273_profile-image-png-of-a-woman-female-profile.png',
                                                   ),
+                                                  fit: BoxFit.fill,
                                                 ),
                                               ),
                                             ),
@@ -329,8 +330,8 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                       AlignmentDirectional(
                                                           0, 0),
                                                   child: Container(
-                                                    width: 65,
-                                                    height: 65,
+                                                    width: 62,
+                                                    height: 62,
                                                     decoration: BoxDecoration(
                                                       color: Color(0xB6EFDF04),
                                                       shape: BoxShape.circle,
@@ -369,6 +370,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                               .followingProfilePic,
                                                           'https://www.kindpng.com/picc/m/24-248273_profile-image-png-of-a-woman-female-profile.png',
                                                         ),
+                                                        fit: BoxFit.fill,
                                                       ),
                                                     ),
                                                   ),
@@ -468,6 +470,7 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                         .userProfilePic,
                                                     'https://www.kindpng.com/picc/m/24-248273_profile-image-png-of-a-woman-female-profile.png',
                                                   ),
+                                                  fit: BoxFit.fill,
                                                 ),
                                               ),
                                             ),
@@ -534,7 +537,6 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                 Image.network(
                                   listViewPostsRecord.imageUrl,
                                   width: double.infinity,
-                                  height: 30,
                                   fit: BoxFit.fitWidth,
                                 ),
                                 Padding(
@@ -577,23 +579,14 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                                   await LikesRecord.collection
                                                       .doc()
                                                       .set(likesCreateData);
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        content: Text('Liked'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
+
+                                                  final postsUpdateData = {
+                                                    'num_likes':
+                                                        FieldValue.increment(1),
+                                                  };
+                                                  await listViewPostsRecord
+                                                      .reference
+                                                      .update(postsUpdateData);
                                                 },
                                                 child: Icon(
                                                   Icons.favorite_border_sharp,
@@ -606,113 +599,40 @@ class _FeedPageWidgetState extends State<FeedPageWidget> {
                                           ],
                                         ),
                                       ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 200, 0),
+                                        child: Text(
+                                          '${listViewPostsRecord.numLikes.toString()}  Likes',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Lato',
+                                            color: Color(0xEA3F3642),
+                                          ),
+                                        ),
+                                      ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          InkWell(
-                                            onTap: () async {
-                                              await Share.share(
-                                                  listViewPostsRecord.post);
-                                            },
-                                            child: Icon(
-                                              Icons.send,
-                                              color:
-                                                  FlutterFlowTheme.primaryColor,
-                                              size: 22,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 20, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                await Share.share(
+                                                    listViewPostsRecord.post);
+                                              },
+                                              child: Icon(
+                                                Icons.send,
+                                                color: FlutterFlowTheme
+                                                    .primaryColor,
+                                                size: 22,
+                                              ),
                                             ),
                                           )
                                         ],
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            160, 0, 0, 0),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            final followsCreateData =
-                                                createFollowsRecordData(
-                                              follower: currentUserReference,
-                                              following:
-                                                  listViewPostsRecord.user,
-                                              followerProfilePic:
-                                                  currentUserPhoto,
-                                              followingProfilePic:
-                                                  listViewPostsRecord
-                                                      .userProfilePic,
-                                            );
-                                            await FollowsRecord.collection
-                                                .doc()
-                                                .set(followsCreateData);
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  content: Text('Following'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            );
-                                          },
-                                          child: Text(
-                                            'Follow',
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Lato',
-                                              color:
-                                                  FlutterFlowTheme.primaryColor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 15, 0),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            final followsCreateData =
-                                                createFollowsRecordData(
-                                              follower: currentUserReference,
-                                              following:
-                                                  listViewPostsRecord.user,
-                                              followerProfilePic:
-                                                  currentUserPhoto,
-                                              followingProfilePic:
-                                                  listViewPostsRecord
-                                                      .userProfilePic,
-                                            );
-                                            await FollowsRecord.collection
-                                                .doc()
-                                                .set(followsCreateData);
-                                            await showDialog(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  content: Text('Following'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            );
-                                          },
-                                          child: Icon(
-                                            Icons.bookmark_border_outlined,
-                                            color:
-                                                FlutterFlowTheme.primaryColor,
-                                            size: 22,
-                                          ),
-                                        ),
                                       )
                                     ],
                                   ),

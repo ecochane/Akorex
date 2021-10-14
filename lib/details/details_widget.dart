@@ -165,7 +165,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 10, 0, 60),
                                       child: Text(
-                                        'Category  ${detailsToDoListRecord.category}',
+                                        'Category :  ${detailsToDoListRecord.category}',
                                         style:
                                             FlutterFlowTheme.subtitle1.override(
                                           fontFamily: 'Poppins',
@@ -228,7 +228,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 10, 0, 10),
                                       child: Text(
-                                        'Every  ${detailsToDoListRecord.every}',
+                                        'Frequency :  ${detailsToDoListRecord.every}',
                                         style:
                                             FlutterFlowTheme.subtitle1.override(
                                           fontFamily: 'Poppins',

@@ -145,6 +145,7 @@ class _EditWidgetState extends State<EditWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                     child: FlutterFlowDropDown(
+                      initialOption: categoryValue ??= widget.taskedit.category,
                       options:
                           ['Skin', 'Hair', 'Nails', 'Shape/Weight'].toList(),
                       onChanged: (val) => setState(() => categoryValue = val),
@@ -211,6 +212,7 @@ class _EditWidgetState extends State<EditWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                     child: FlutterFlowDropDown(
+                      initialOption: everyValue ??= widget.taskedit.every,
                       options: ['Daily', 'Weekly', 'Monthly'].toList(),
                       onChanged: (val) => setState(() => everyValue = val),
                       width: MediaQuery.of(context).size.width * 0.9,
@@ -235,6 +237,7 @@ class _EditWidgetState extends State<EditWidget> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                     child: FlutterFlowDropDown(
+                      initialOption: timeValue ??= widget.taskedit.time,
                       options: [
                         '1:00am',
                         '2:00am',

@@ -119,6 +119,7 @@ class _AddtaskWidgetState extends State<AddtaskWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: FlutterFlowDropDown(
+                    initialOption: categoryValue ??= 'Skin',
                     options: ['Skin', 'Hair', 'Nails', 'Shape/Weight'].toList(),
                     onChanged: (val) => setState(() => categoryValue = val),
                     width: MediaQuery.of(context).size.width * 0.9,
@@ -182,6 +183,7 @@ class _AddtaskWidgetState extends State<AddtaskWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: FlutterFlowDropDown(
+                    initialOption: everyValue ??= 'Daily',
                     options: ['Daily', 'Weekly', 'Monthly'].toList(),
                     onChanged: (val) => setState(() => everyValue = val),
                     width: MediaQuery.of(context).size.width * 0.9,
@@ -206,6 +208,7 @@ class _AddtaskWidgetState extends State<AddtaskWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                   child: FlutterFlowDropDown(
+                    initialOption: timeValue ??= '1:00am',
                     options: [
                       '1:00am',
                       '2:00am',

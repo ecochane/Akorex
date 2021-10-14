@@ -115,8 +115,8 @@ class _ProfilePageCopyWidgetState extends State<ProfilePageCopyWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             1, 0, 0, 0),
                                         child: Container(
-                                          width: 100,
-                                          height: 100,
+                                          width: 70,
+                                          height: 70,
                                           clipBehavior: Clip.antiAlias,
                                           decoration: BoxDecoration(
                                             shape: BoxShape.circle,
@@ -127,6 +127,7 @@ class _ProfilePageCopyWidgetState extends State<ProfilePageCopyWidget> {
                                                   .profilePicUrl,
                                               'https://www.kindpng.com/picc/m/24-248273_profile-image-png-of-a-woman-female-profile.png',
                                             ),
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),

@@ -48,6 +48,7 @@ dependencies:
   share_plus: ^2.1.4
   sign_in_with_apple: ^3.0.0
   smooth_page_indicator:
+  table_calendar: ^2.3.3
   timeago:
   url_launcher:
 

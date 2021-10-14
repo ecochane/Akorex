@@ -48,7 +48,7 @@ class _AcheivedTargetWidgetState extends State<AcheivedTargetWidget> {
           },
         ),
         title: Text(
-          'Acheived Targets',
+          'Completed Tasks',
           style: FlutterFlowTheme.bodyText1.override(
             fontFamily: 'Lato',
             color: Colors.white,

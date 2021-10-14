@@ -7,7 +7,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login_page/login_page_widget.dart';
 import '../main.dart';
 import '../photo/photo_widget.dart';
-import '../post/post_widget.dart';
+import '../settings/settings_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -117,14 +117,14 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => PostWidget(),
+                                    builder: (context) => SettingsWidget(),
                                   ),
                                 );
                               },
                               child: Icon(
-                                Icons.add,
-                                color: FlutterFlowTheme.primaryColor,
-                                size: 30,
+                                Icons.settings_outlined,
+                                color: Color(0xF56D692E),
+                                size: 26,
                               ),
                             ),
                           )
@@ -172,6 +172,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                                   .profilePicUrl,
                                               'https://www.kindpng.com/picc/m/24-248273_profile-image-png-of-a-woman-female-profile.png',
                                             ),
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),
@@ -200,11 +201,9 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: AlignmentDirectional(-1, 0),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(0.8, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,

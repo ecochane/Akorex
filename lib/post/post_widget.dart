@@ -59,7 +59,7 @@ class _PostWidgetState extends State<PostWidget> {
               buttonSize: 48,
               icon: Icon(
                 Icons.close_rounded,
-                color: FlutterFlowTheme.primaryColor,
+                color: Color(0xFF232124),
                 size: 30,
               ),
               onPressed: () async {
@@ -234,7 +234,7 @@ class _PostWidgetState extends State<PostWidget> {
                       fontWeight: FontWeight.w500,
                     ),
                     borderSide: BorderSide(
-                      color: FlutterFlowTheme.primaryColor,
+                      color: Color(0xFF7616CF),
                       width: 2,
                     ),
                     borderRadius: 8,
@@ -273,7 +273,7 @@ class _PostWidgetState extends State<PostWidget> {
                   options: FFButtonOptions(
                     width: 150,
                     height: 45,
-                    color: FlutterFlowTheme.primaryColor,
+                    color: Color(0xFFFBF26B),
                     textStyle: FlutterFlowTheme.subtitle2.override(
                       fontFamily: 'Lexend Deca',
                       color: Color(0xFF332D34),
@@ -284,7 +284,7 @@ class _PostWidgetState extends State<PostWidget> {
                       color: Color(0x15000000),
                       width: 0,
                     ),
-                    borderRadius: 80,
+                    borderRadius: 8,
                   ),
                   loading: _loadingButton,
                 ),
