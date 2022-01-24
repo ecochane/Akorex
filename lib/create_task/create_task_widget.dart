@@ -509,9 +509,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                           time: timeValue,
                           category: categoryValue,
                           owner: currentUserReference,
-                          brand: everyValue4,
-                          dayWeek: everyValue2,
-                          dayMonth: everyValue3,
+                          brand: '',
                         );
                         await ToDoListRecord.collection
                             .doc()

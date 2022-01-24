@@ -15,17 +15,21 @@ class CreateAccountWidget extends StatefulWidget {
 }
 
 class _CreateAccountWidgetState extends State<CreateAccountWidget> {
-  TextEditingController emailController;
+  TextEditingController emailController1;
   TextEditingController passwordController;
   bool passwordVisibility;
+  TextEditingController emailController2;
+  bool emailVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController();
+    emailController1 = TextEditingController();
     passwordController = TextEditingController();
     passwordVisibility = false;
+    emailController2 = TextEditingController();
+    emailVisibility = false;
   }
 
   @override
@@ -81,7 +85,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 44),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 24),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -90,15 +94,11 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                              child: Text(
-                                'Create Account',
-                                style: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF0D1012),
-                                ),
+                            Text(
+                              'Create Account',
+                              style: FlutterFlowTheme.title1.override(
+                                fontFamily: 'Lexend Deca',
+                                color: Color(0xFF0D1012),
                               ),
                             ),
                           ],
@@ -166,7 +166,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                         child: TextFormField(
-                          controller: emailController,
+                          controller: emailController1,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Your email...',
@@ -248,6 +248,67 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                         ),
                       ),
                       Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24, 0, 24, 0),
+                                child: TextFormField(
+                                  controller: emailController2,
+                                  obscureText: !emailVisibility,
+                                  decoration: InputDecoration(
+                                    labelText: 'Confirm Password',
+                                    labelStyle: FlutterFlowTheme.bodyText1,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFE6E6E6),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(80),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFE6E6E6),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(80),
+                                    ),
+                                    filled: true,
+                                    fillColor: Color(0xC1FFFFFF),
+                                    contentPadding:
+                                        EdgeInsetsDirectional.fromSTEB(
+                                            16, 0, 0, 0),
+                                    prefixIcon: Icon(
+                                      Icons.lock_open_outlined,
+                                    ),
+                                    suffixIcon: InkWell(
+                                      onTap: () => setState(
+                                        () =>
+                                            emailVisibility = !emailVisibility,
+                                      ),
+                                      child: Icon(
+                                        emailVisibility
+                                            ? Icons.visibility_outlined
+                                            : Icons.visibility_off_outlined,
+                                        color: Color(0xFF757575),
+                                        size: 22,
+                                      ),
+                                    ),
+                                  ),
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: FlutterFlowTheme.primaryDark,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 12),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -258,9 +319,21 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  if (passwordController.text !=
+                                      emailController2.text) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          "Passwords don't match!",
+                                        ),
+                                      ),
+                                    );
+                                    return;
+                                  }
+
                                   final user = await createAccountWithEmail(
                                     context,
-                                    emailController.text,
+                                    emailController1.text,
                                     passwordController.text,
                                   );
                                   if (user == null) {
