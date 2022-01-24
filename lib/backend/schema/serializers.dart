@@ -1,11 +1,14 @@
 import 'package:built_value/standard_json_plugin.dart';
 
+import 'user_posts_record.dart';
 import 'users_record.dart';
-import 'follows_record.dart';
-import 'posts_record.dart';
+import 'post_comments_record.dart';
+import 'user_stories_record.dart';
+import 'story_comments_record.dart';
+import 'friends_record.dart';
+import 'chats_record.dart';
+import 'chat_messages_record.dart';
 import 'to_do_list_record.dart';
-import 'likes_record.dart';
-import 'user_record.dart';
 
 import 'index.dart';
 
@@ -16,12 +19,15 @@ part 'serializers.g.dart';
 const kDocumentReferenceField = 'Document__Reference__Field';
 
 @SerializersFor(const [
+  UserPostsRecord,
   UsersRecord,
-  FollowsRecord,
-  PostsRecord,
+  PostCommentsRecord,
+  UserStoriesRecord,
+  StoryCommentsRecord,
+  FriendsRecord,
+  ChatsRecord,
+  ChatMessagesRecord,
   ToDoListRecord,
-  LikesRecord,
-  UserRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

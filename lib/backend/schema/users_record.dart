@@ -10,28 +10,11 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   static Serializer<UsersRecord> get serializer => _$usersRecordSerializer;
 
   @nullable
-  String get email;
-
-  @nullable
-  String get username;
-
-  @nullable
   @BuiltValueField(wireName: 'display_name')
   String get displayName;
 
   @nullable
-  @BuiltValueField(wireName: 'profile_pic_url')
-  String get profilePicUrl;
-
-  @nullable
-  String get bio;
-
-  @nullable
-  String get website;
-
-  @nullable
-  @BuiltValueField(wireName: 'created_time')
-  DateTime get createdTime;
+  String get email;
 
   @nullable
   @BuiltValueField(wireName: 'photo_url')
@@ -41,27 +24,35 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get uid;
 
   @nullable
+  @BuiltValueField(wireName: 'created_time')
+  DateTime get createdTime;
+
+  @nullable
   @BuiltValueField(wireName: 'phone_number')
   String get phoneNumber;
 
   @nullable
-  String get password;
+  String get userName;
+
+  @nullable
+  String get bio;
+
+  @nullable
+  bool get isFollowed;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
-    ..email = ''
-    ..username = ''
     ..displayName = ''
-    ..profilePicUrl = ''
-    ..bio = ''
-    ..website = ''
+    ..email = ''
     ..photoUrl = ''
     ..uid = ''
     ..phoneNumber = ''
-    ..password = '';
+    ..userName = ''
+    ..bio = ''
+    ..isFollowed = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -69,6 +60,10 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   static Stream<UsersRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
+  static Future<UsersRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
   UsersRecord._();
   factory UsersRecord([void Function(UsersRecordBuilder) updates]) =
@@ -81,29 +76,25 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 }
 
 Map<String, dynamic> createUsersRecordData({
-  String email,
-  String username,
   String displayName,
-  String profilePicUrl,
-  String bio,
-  String website,
-  DateTime createdTime,
+  String email,
   String photoUrl,
   String uid,
+  DateTime createdTime,
   String phoneNumber,
-  String password,
+  String userName,
+  String bio,
+  bool isFollowed,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
         UsersRecord((u) => u
-          ..email = email
-          ..username = username
           ..displayName = displayName
-          ..profilePicUrl = profilePicUrl
-          ..bio = bio
-          ..website = website
-          ..createdTime = createdTime
+          ..email = email
           ..photoUrl = photoUrl
           ..uid = uid
+          ..createdTime = createdTime
           ..phoneNumber = phoneNumber
-          ..password = password));
+          ..userName = userName
+          ..bio = bio
+          ..isFollowed = isFollowed));

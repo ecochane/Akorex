@@ -1,4 +1,4 @@
-# akorex
+# Akorex
 
 A new Flutter project.
 

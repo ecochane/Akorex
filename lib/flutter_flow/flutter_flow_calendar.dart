@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 DateTime kFirstDay = DateTime(1970, 1, 1);
 DateTime kLastDay = DateTime(2100, 1, 1);
@@ -29,7 +30,7 @@ class FlutterFlowCalendar extends StatefulWidget {
   const FlutterFlowCalendar({
     @required this.color,
     this.onChange,
-    this.runMode = false,
+    this.initialDate,
     this.weekFormat = false,
     this.weekStartsMonday = false,
     this.iconColor,
@@ -41,11 +42,11 @@ class FlutterFlowCalendar extends StatefulWidget {
     Key key,
   }) : super(key: key);
 
-  final bool runMode;
   final bool weekFormat;
   final bool weekStartsMonday;
   final Color color;
   final void Function(DateTimeRange) onChange;
+  final DateTime initialDate;
   final Color iconColor;
   final TextStyle dateStyle;
   final TextStyle dayOfWeekStyle;
@@ -68,12 +69,14 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
   @override
   void initState() {
     super.initState();
-    focusedDay = DateTime.now();
+    focusedDay = widget.initialDate ?? DateTime.now();
     selectedDay = DateTimeRange(
-      start: DateTime.now().startOfDay,
-      end: DateTime.now().endOfDay,
+      start: widget.initialDate?.startOfDay ?? DateTime.now().startOfDay,
+      end: widget.initialDate?.endOfDay ?? DateTime.now().endOfDay,
     );
     calendarController = CalendarController();
+    SchedulerBinding.instance
+        .addPostFrameCallback((_) => setSelectedDay(selectedDay.start));
   }
 
   CalendarFormat get calendarFormat =>
@@ -96,8 +99,8 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
     final newRange = newSelectedDay == null
         ? null
         : DateTimeRange(
-            start: newSelectedDay,
-            end: newSelectedEnd ?? newSelectedDay,
+            start: newSelectedDay.startOfDay,
+            end: newSelectedEnd ?? newSelectedDay.endOfDay,
           );
     setState(() {
       selectedDay = newRange;
@@ -114,12 +117,8 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
         children: <Widget>[
           CalendarHeader(
             focusedDay: focusedDay,
-            onLeftChevronTap: () {
-              calendarController.previousPage();
-            },
-            onRightChevronTap: () {
-              calendarController.nextPage();
-            },
+            onLeftChevronTap: () => calendarController.previousPage(),
+            onRightChevronTap: () => calendarController.nextPage(),
             onTodayButtonTap: () {
               if (!calendarController.visibleDays.any(
                 calendarController.isToday,
@@ -187,12 +186,10 @@ class _FlutterFlowCalendarState extends State<FlutterFlowCalendar> {
                 }
               }
             },
-            onVisibleDaysChanged: (start, end, format) {
-              setState(() {
-                focusedDay = start.add(end.difference(start) ~/ 2);
-                calendarController.setFocusedDay(focusedDay);
-              });
-            },
+            onVisibleDaysChanged: (start, end, format) => setState(() {
+              focusedDay = start.add(end.difference(start) ~/ 2);
+              calendarController.setFocusedDay(focusedDay);
+            }),
           ),
         ],
       );
@@ -221,45 +218,42 @@ class CalendarHeader extends StatelessWidget {
   final TextStyle titleStyle;
 
   @override
-  Widget build(BuildContext context) {
-    final String text = DateFormat.yMMMM().format(focusedDay);
-    return Container(
-      decoration: const BoxDecoration(),
-      margin: const EdgeInsets.all(0),
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          const SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Text(
-              text,
-              style: const TextStyle(fontSize: 17).merge(titleStyle),
+  Widget build(BuildContext context) => Container(
+        decoration: const BoxDecoration(),
+        margin: const EdgeInsets.all(0),
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            const SizedBox(
+              width: 20,
             ),
-          ),
-          if (clearButtonVisible)
+            Expanded(
+              child: Text(
+                DateFormat.yMMMM().format(focusedDay),
+                style: const TextStyle(fontSize: 17).merge(titleStyle),
+              ),
+            ),
+            if (clearButtonVisible)
+              CustomIconButton(
+                icon: Icon(Icons.clear, color: iconColor),
+                onTap: onClearButtonTap,
+              ),
             CustomIconButton(
-              icon: Icon(Icons.clear, color: iconColor),
-              onTap: onClearButtonTap,
+              icon: Icon(Icons.calendar_today, color: iconColor),
+              onTap: onTodayButtonTap,
             ),
-          CustomIconButton(
-            icon: Icon(Icons.calendar_today, color: iconColor),
-            onTap: onTodayButtonTap,
-          ),
-          CustomIconButton(
-            icon: Icon(Icons.chevron_left, color: iconColor),
-            onTap: onLeftChevronTap,
-          ),
-          CustomIconButton(
-            icon: Icon(Icons.chevron_right, color: iconColor),
-            onTap: onRightChevronTap,
-          ),
-        ],
-      ),
-    );
-  }
+            CustomIconButton(
+              icon: Icon(Icons.chevron_left, color: iconColor),
+              onTap: onLeftChevronTap,
+            ),
+            CustomIconButton(
+              icon: Icon(Icons.chevron_right, color: iconColor),
+              onTap: onRightChevronTap,
+            ),
+          ],
+        ),
+      );
 }
 
 class CustomIconButton extends StatelessWidget {
@@ -277,21 +271,19 @@ class CustomIconButton extends StatelessWidget {
   final EdgeInsetsGeometry padding;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: margin,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(100),
-        child: Padding(
-          padding: padding,
-          child: Icon(
-            icon.icon,
-            color: icon?.color,
-            size: icon?.size,
+  Widget build(BuildContext context) => Padding(
+        padding: margin,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(100),
+          child: Padding(
+            padding: padding,
+            child: Icon(
+              icon.icon,
+              color: icon?.color,
+              size: icon?.size,
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

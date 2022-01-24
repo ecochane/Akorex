@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>555153307488-72jtra4rnvqokajr7b6f30pcrfa5pmfe.apps.googleusercontent.com</string>
+	<string>8027435544-l3pm4eksojeh29eo5p9un69dpgqq6tif.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.555153307488-72jtra4rnvqokajr7b6f30pcrfa5pmfe</string>
+	<string>com.googleusercontent.apps.8027435544-l3pm4eksojeh29eo5p9un69dpgqq6tif</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>555153307488-2f1gdb51acccdc29ih8o0urbi1rob6pu.apps.googleusercontent.com</string>
+	<string>8027435544-vp67i8ictdigpq2q680i405semln3mka.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBOMxgPlqOy7pE5KAveGsLnNbU7ZY3HIBY</string>
+	<string>AIzaSyD-VYe9HLcVHbVzrD0lU08isGA_KT68fhk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>555153307488</string>
+	<string>8027435544</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.accuite.akorex</string>
+	<string>com.akorex.personacare</string>
 	<key>PROJECT_ID</key>
-	<string>akorex</string>
+	<string>akorex-selfcare</string>
 	<key>STORAGE_BUCKET</key>
-	<string>akorex.appspot.com</string>
+	<string>akorex-selfcare.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:555153307488:ios:43f548f75906c37615d005</string>
-	<key>DATABASE_URL</key>
-	<string>https://akorex-default-rtdb.firebaseio.com</string>
+	<string>1:8027435544:ios:1935cee42762c3e1f2896d</string>
 </dict>
 </plist>

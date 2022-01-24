@@ -36,6 +36,15 @@ abstract class ToDoListRecord
   DocumentReference get owner;
 
   @nullable
+  String get brand;
+
+  @nullable
+  String get dayWeek;
+
+  @nullable
+  String get dayMonth;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -45,7 +54,10 @@ abstract class ToDoListRecord
     ..toDoState = false
     ..every = ''
     ..time = ''
-    ..category = '';
+    ..category = ''
+    ..brand = ''
+    ..dayWeek = ''
+    ..dayMonth = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('ToDoList');
@@ -53,6 +65,10 @@ abstract class ToDoListRecord
   static Stream<ToDoListRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
       .map((s) => serializers.deserializeWith(serializer, serializedData(s)));
+
+  static Future<ToDoListRecord> getDocumentOnce(DocumentReference ref) => ref
+      .get()
+      .then((s) => serializers.deserializeWith(serializer, serializedData(s)));
 
   ToDoListRecord._();
   factory ToDoListRecord([void Function(ToDoListRecordBuilder) updates]) =
@@ -73,6 +89,9 @@ Map<String, dynamic> createToDoListRecordData({
   String time,
   String category,
   DocumentReference owner,
+  String brand,
+  String dayWeek,
+  String dayMonth,
 }) =>
     serializers.toFirestore(
         ToDoListRecord.serializer,
@@ -84,4 +103,7 @@ Map<String, dynamic> createToDoListRecordData({
           ..every = every
           ..time = time
           ..category = category
-          ..owner = owner));
+          ..owner = owner
+          ..brand = brand
+          ..dayWeek = dayWeek
+          ..dayMonth = dayMonth));

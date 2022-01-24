@@ -1,49 +1,48 @@
 {
   "project_info": {
-    "project_number": "555153307488",
-    "firebase_url": "https://akorex-default-rtdb.firebaseio.com",
-    "project_id": "akorex",
-    "storage_bucket": "akorex.appspot.com"
+    "project_number": "8027435544",
+    "project_id": "akorex-selfcare",
+    "storage_bucket": "akorex-selfcare.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:555153307488:android:518780f50a4b5b4d15d005",
+        "mobilesdk_app_id": "1:8027435544:android:ce6c678a170cfc22f2896d",
         "android_client_info": {
-          "package_name": "com.accuite.akorex"
+          "package_name": "com.akorex.personacare"
         }
       },
       "oauth_client": [
         {
-          "client_id": "555153307488-9cmbtgc5irh8rekahd6fpn45p3m59vib.apps.googleusercontent.com",
+          "client_id": "8027435544-vp67i8ictdigpq2q680i405semln3mka.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.accuite.akorex",
+            "package_name": "com.akorex.personacare",
             "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
           }
         },
         {
-          "client_id": "555153307488-vnajb8nn85p6pmoi756u5btuju249978.apps.googleusercontent.com",
+          "client_id": "8027435544-elrm5o8k56fs96nqdoo43uri40mstdao.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCy11EfiAQ4Gmb1r7EP-8r6lvvNCl4lXRY"
+          "current_key": "AIzaSyCUkOfNR9q48b79YyYVHdmi126m2MTSxMo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "555153307488-vnajb8nn85p6pmoi756u5btuju249978.apps.googleusercontent.com",
+              "client_id": "8027435544-elrm5o8k56fs96nqdoo43uri40mstdao.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "555153307488-72jtra4rnvqokajr7b6f30pcrfa5pmfe.apps.googleusercontent.com",
+              "client_id": "8027435544-l3pm4eksojeh29eo5p9un69dpgqq6tif.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.accuite.akorex"
+                "bundle_id": "com.akorex.personacare"
               }
             }
           ]

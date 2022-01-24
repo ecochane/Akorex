@@ -6,18 +6,19 @@ import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
-import 'package:akorex/login_page/login_page_widget.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:akorex/create_account/create_account_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
-import 'routine/routine_widget.dart';
-import 'addtask/addtask_widget.dart';
-import 'acheived_target/acheived_target_widget.dart';
-import 'feed_page/feed_page_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'dashboard/dashboard_widget.dart';
+import 'home_page/home_page_widget.dart';
+import 'chat_main/chat_main_widget.dart';
 import 'profile_page/profile_page_widget.dart';
+import 'edit_settings/edit_settings_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
@@ -30,6 +31,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Stream<AkorexFirebaseUser> userStream;
   AkorexFirebaseUser initialUser;
+  bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
 
   @override
@@ -37,6 +39,8 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     userStream = akorexFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
+    Future.delayed(
+        Duration(seconds: 1), () => setState(() => displaySplashImage = false));
   }
 
   @override
@@ -57,14 +61,14 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: initialUser == null
+      home: initialUser == null || displaySplashImage
           ? Container(
               color: Colors.transparent,
               child: Center(
                 child: Builder(
                   builder: (context) => Image.asset(
-                    'assets/images/imageedit_2_8146002034.png',
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    'assets/images/Akorex-removebg-preview.png',
+                    width: MediaQuery.of(context).size.width * 0.3,
                     fit: BoxFit.fitWidth,
                   ),
                 ),
@@ -72,7 +76,7 @@ class _MyAppState extends State<MyApp> {
             )
           : currentUser.loggedIn
               ? NavBarPage()
-              : LoginPageWidget(),
+              : CreateAccountWidget(),
     );
   }
 }
@@ -88,7 +92,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPage = 'routine';
+  String _currentPage = 'Dashboard';
 
   @override
   void initState() {
@@ -99,65 +103,74 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'routine': RoutineWidget(),
-      'addtask': AddtaskWidget(),
-      'AcheivedTarget': AcheivedTargetWidget(),
-      'FeedPage': FeedPageWidget(),
-      'ProfilePage': ProfilePageWidget(),
+      'Dashboard': DashboardWidget(),
+      'homePage': HomePageWidget(),
+      'chatMain': ChatMainWidget(),
+      'profilePage': ProfilePageWidget(),
+      'editSettings': EditSettingsWidget(),
     };
+    final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
       body: tabs[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
+        backgroundColor: Color(0xC4FFFFFF),
+        selectedItemColor: FlutterFlowTheme.primaryColor,
+        unselectedItemColor: Color(0xFF5D5960),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: FaIcon(
-              FontAwesomeIcons.tasks,
-              size: 20,
-            ),
-            label: 'Routine',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(
-              Icons.add_box_outlined,
+              Icons.dashboard_customize,
               size: 24,
             ),
-            label: 'Home',
+            label: 'Dashboard',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.playlist_add_check_sharp,
-              size: 32,
+              Icons.people_outline,
+              size: 24,
             ),
-            label: 'Acheived',
+            label: 'Community',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.group_outlined,
-              size: 25,
+              Icons.chat_bubble_outline,
+              size: 24,
             ),
-            label: 'Home',
+            activeIcon: Icon(
+              Icons.chat_bubble_outlined,
+              size: 24,
+            ),
+            label: 'Messages',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.face_outlined,
+              Icons.account_circle_outlined,
+              size: 24,
+            ),
+            activeIcon: Icon(
+              Icons.account_circle,
               size: 24,
             ),
             label: 'Profile',
             tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings_outlined,
+              size: 24,
+            ),
+            label: 'Settings',
+            tooltip: '',
           )
         ],
-        backgroundColor: Colors.white,
-        currentIndex: tabs.keys.toList().indexOf(_currentPage),
-        selectedItemColor: Color(0xFFA97AD2),
-        unselectedItemColor: Color(0xFF050505),
-        onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
       ),
     );
   }
