@@ -362,6 +362,7 @@ class _CreateStoryWidgetState extends State<CreateStoryWidget> {
                           storyDescription: storyDescriptionController.text,
                           storyPostedAt: getCurrentTimestamp,
                           isOwner: true,
+                          thumb: currentUserPhoto,
                         );
                         await UserStoriesRecord.collection
                             .doc()

@@ -27,123 +27,133 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Color(0xE2F7FAFC),
+        backgroundColor: Color(0xFFF9FDFD),
         automaticallyImplyLeading: false,
-        leading: InkWell(
-          onTap: () async {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.chevron_left_rounded,
-            color: FlutterFlowTheme.dark600,
-            size: 32,
+        leading: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+          child: InkWell(
+            onTap: () async {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.chevron_left_rounded,
+              color: FlutterFlowTheme.dark600,
+              size: 32,
+            ),
           ),
         ),
-        title: Text(
-          'Forgot Password',
-          style: FlutterFlowTheme.title2,
+        title: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+          child: Text(
+            'Forgot Password',
+            style: FlutterFlowTheme.title3,
+          ),
         ),
         actions: [],
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: Color(0xE2F7FAFC),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
-            child: TextFormField(
-              controller: phoneNumberController,
-              obscureText: false,
-              decoration: InputDecoration(
-                labelText: 'Enter your email',
-                labelStyle: FlutterFlowTheme.bodyText1.override(
+      backgroundColor: Color(0xFFF9FDFD),
+      body: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+              child: TextFormField(
+                controller: phoneNumberController,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Enter your email',
+                  labelStyle: FlutterFlowTheme.bodyText1.override(
+                    fontFamily: 'Lexend Deca',
+                    color: FlutterFlowTheme.grayIcon,
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.gray200,
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.gray200,
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  filled: true,
+                  fillColor: FlutterFlowTheme.tertiaryColor,
+                  contentPadding:
+                      EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
+                ),
+                style: FlutterFlowTheme.bodyText1.override(
                   fontFamily: 'Lexend Deca',
-                  color: FlutterFlowTheme.grayIcon,
+                  color: FlutterFlowTheme.primaryDark,
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: FlutterFlowTheme.gray200,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: FlutterFlowTheme.gray200,
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                filled: true,
-                fillColor: FlutterFlowTheme.tertiaryColor,
-                contentPadding: EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
-              ),
-              style: FlutterFlowTheme.bodyText1.override(
-                fontFamily: 'Lexend Deca',
-                color: FlutterFlowTheme.primaryDark,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(
-                  child: Text(
-                    'We will send you an email with a link to reset your password, please enter the email associated with your account above.',
-                    style: FlutterFlowTheme.bodyText1,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-            child: FFButtonWidget(
-              onPressed: () async {
-                if (phoneNumberController.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        'Email required!',
-                      ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'We will send you an email with a link to reset your password, please enter the email associated with your account above.',
+                      style: FlutterFlowTheme.bodyText1,
                     ),
-                  );
-                  return;
-                }
-                await resetPassword(
-                  email: phoneNumberController.text,
-                  context: context,
-                );
-              },
-              text: 'Send Reset Link',
-              options: FFButtonOptions(
-                width: 200,
-                height: 50,
-                color: FlutterFlowTheme.secondaryColor,
-                textStyle: FlutterFlowTheme.subtitle2.override(
-                  fontFamily: 'Lexend Deca',
-                  color: FlutterFlowTheme.tertiaryColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-                elevation: 3,
-                borderSide: BorderSide(
-                  color: Colors.transparent,
-                  width: 1,
-                ),
-                borderRadius: 30,
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+              child: FFButtonWidget(
+                onPressed: () async {
+                  if (phoneNumberController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Email required!',
+                        ),
+                      ),
+                    );
+                    return;
+                  }
+                  await resetPassword(
+                    email: phoneNumberController.text,
+                    context: context,
+                  );
+                },
+                text: 'Send Reset Link',
+                options: FFButtonOptions(
+                  width: 200,
+                  height: 50,
+                  color: FlutterFlowTheme.secondaryColor,
+                  textStyle: FlutterFlowTheme.subtitle2.override(
+                    fontFamily: 'Lexend Deca',
+                    color: FlutterFlowTheme.tertiaryColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  elevation: 3,
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1,
+                  ),
+                  borderRadius: 30,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -41,16 +41,11 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.background,
+        backgroundColor: FlutterFlowTheme.tertiaryColor,
         automaticallyImplyLeading: false,
         title: Text(
           'Create Post',
-          style: FlutterFlowTheme.title2.override(
-            fontFamily: 'Lexend Deca',
-            color: Color(0xFF32263D),
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
+          style: FlutterFlowTheme.title3,
         ),
         actions: [
           Padding(
@@ -145,7 +140,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                               MediaQuery.of(context).size.width,
                                           height: 350,
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFF1F5F8),
+                                            color: Color(0xFFF9FEFF),
                                             image: DecorationImage(
                                               fit: BoxFit.cover,
                                               image: Image.asset(
@@ -298,7 +293,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
             width: double.infinity,
             height: 100,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.secondaryColor,
+              color: FlutterFlowTheme.primaryColor,
             ),
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
@@ -329,7 +324,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                 options: FFButtonOptions(
                   width: 270,
                   height: 50,
-                  color: FlutterFlowTheme.secondaryColor,
+                  color: FlutterFlowTheme.primaryColor,
                   textStyle: FlutterFlowTheme.subtitle2.override(
                     fontFamily: 'Lexend Deca',
                     color: Colors.white,

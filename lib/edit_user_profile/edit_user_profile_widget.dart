@@ -45,155 +45,121 @@ class _EditUserProfileWidgetState extends State<EditUserProfileWidget> {
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
-            backgroundColor: Color(0xE2F7FAFC),
+            backgroundColor: Color(0xFFF9FDFD),
             automaticallyImplyLeading: false,
-            leading: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30,
-              buttonSize: 46,
-              icon: Icon(
-                Icons.arrow_back_rounded,
-                color: Colors.black,
-                size: 24,
+            leading: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+              child: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                buttonSize: 46,
+                icon: Icon(
+                  Icons.keyboard_arrow_left,
+                  color: Colors.black,
+                  size: 24,
+                ),
+                onPressed: () async {
+                  Navigator.pop(context);
+                },
               ),
-              onPressed: () async {
-                Navigator.pop(context);
-              },
             ),
-            title: Text(
-              'Your Profile',
-              style: FlutterFlowTheme.title2,
+            title: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+              child: Text(
+                'Your Profile',
+                style: FlutterFlowTheme.title3,
+              ),
             ),
             actions: [],
             centerTitle: false,
             elevation: 0,
           ),
-          backgroundColor: Color(0xE2F7FAFC),
+          backgroundColor: Color(0xFFF9FDFD),
           body: SafeArea(
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 24, 16),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Fill out your profile now in order to complete setup of your profile.',
-                                style: FlutterFlowTheme.bodyText1,
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 0, 24, 16),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Fill out your profile now in order to complete setup of your profile.',
+                                  style: FlutterFlowTheme.bodyText1,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
-                        child: InkWell(
-                          onTap: () async {
-                            final selectedMedia =
-                                await selectMediaWithSourceBottomSheet(
-                              context: context,
-                              allowPhoto: true,
-                              backgroundColor: FlutterFlowTheme.tertiaryColor,
-                              textColor: FlutterFlowTheme.primaryDark,
-                              pickerFontFamily: 'Lexend Deca',
-                            );
-                            if (selectedMedia != null &&
-                                validateFileFormat(
-                                    selectedMedia.storagePath, context)) {
-                              showUploadMessage(context, 'Uploading file...',
-                                  showLoading: true);
-                              final downloadUrl = await uploadData(
-                                  selectedMedia.storagePath,
-                                  selectedMedia.bytes);
-                              ScaffoldMessenger.of(context)
-                                  .hideCurrentSnackBar();
-                              if (downloadUrl != null) {
-                                setState(() => uploadedFileUrl = downloadUrl);
-                                showUploadMessage(context, 'Success!');
-                              } else {
-                                showUploadMessage(
-                                    context, 'Failed to upload media');
-                                return;
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
+                          child: InkWell(
+                            onTap: () async {
+                              final selectedMedia =
+                                  await selectMediaWithSourceBottomSheet(
+                                context: context,
+                                allowPhoto: true,
+                                backgroundColor: FlutterFlowTheme.tertiaryColor,
+                                textColor: FlutterFlowTheme.primaryDark,
+                                pickerFontFamily: 'Lexend Deca',
+                              );
+                              if (selectedMedia != null &&
+                                  validateFileFormat(
+                                      selectedMedia.storagePath, context)) {
+                                showUploadMessage(context, 'Uploading file...',
+                                    showLoading: true);
+                                final downloadUrl = await uploadData(
+                                    selectedMedia.storagePath,
+                                    selectedMedia.bytes);
+                                ScaffoldMessenger.of(context)
+                                    .hideCurrentSnackBar();
+                                if (downloadUrl != null) {
+                                  setState(() => uploadedFileUrl = downloadUrl);
+                                  showUploadMessage(context, 'Success!');
+                                } else {
+                                  showUploadMessage(
+                                      context, 'Failed to upload media');
+                                  return;
+                                }
                               }
-                            }
-                          },
-                          child: Container(
-                            width: 120,
-                            height: 120,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.gray200,
-                              shape: BoxShape.circle,
+                            },
+                            child: Container(
+                              width: 120,
+                              height: 120,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.gray200,
+                                shape: BoxShape.circle,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 16, 24, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: TextFormField(
-                                controller: yourNameController ??=
-                                    TextEditingController(
-                                  text: editUserProfileUsersRecord.displayName,
-                                ),
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'Your Name',
-                                  labelStyle: FlutterFlowTheme.subtitle1,
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                ),
-                                style: FlutterFlowTheme.title2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(24, 16, 24, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
                                 child: TextFormField(
-                                  controller: userNameController ??=
+                                  controller: yourNameController ??=
                                       TextEditingController(
-                                    text: editUserProfileUsersRecord.userName,
+                                    text:
+                                        editUserProfileUsersRecord.displayName,
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'UserName',
-                                    labelStyle: FlutterFlowTheme.bodyText1,
+                                    labelText: 'Your Name',
+                                    labelStyle: FlutterFlowTheme.subtitle1,
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
@@ -215,65 +181,111 @@ class _EditUserProfileWidgetState extends State<EditUserProfileWidget> {
                                       ),
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.title3,
+                                  style: FlutterFlowTheme.title2,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                                child: TextFormField(
-                                  controller: bioController ??=
-                                      TextEditingController(
-                                    text: editUserProfileUsersRecord.bio,
-                                  ),
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    hintText: 'Your Bio',
-                                    hintStyle: FlutterFlowTheme.bodyText1,
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.gray200,
-                                        width: 1,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 12, 0, 0),
+                                  child: TextFormField(
+                                    controller: userNameController ??=
+                                        TextEditingController(
+                                      text: editUserProfileUsersRecord.userName,
+                                    ),
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'UserName',
+                                      labelStyle: FlutterFlowTheme.bodyText1,
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
                                       ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
                                       ),
                                     ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.gray200,
-                                        width: 1,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    contentPadding:
-                                        EdgeInsetsDirectional.fromSTEB(
-                                            0, 8, 0, 0),
+                                    style: FlutterFlowTheme.title3,
                                   ),
-                                  style: FlutterFlowTheme.bodyText2,
-                                  textAlign: TextAlign.start,
-                                  maxLines: 4,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 12, 0, 0),
+                                  child: TextFormField(
+                                    controller: bioController ??=
+                                        TextEditingController(
+                                      text: editUserProfileUsersRecord.bio,
+                                    ),
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: 'Your Bio',
+                                      hintStyle: FlutterFlowTheme.bodyText1,
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.gray200,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.gray200,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0, 8, 0, 0),
+                                    ),
+                                    style: FlutterFlowTheme.bodyText2,
+                                    textAlign: TextAlign.start,
+                                    maxLines: 4,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),

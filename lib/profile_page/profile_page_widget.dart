@@ -66,8 +66,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24, 20, 0, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -118,8 +118,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget> {
                             Align(
                               alignment: AlignmentDirectional(0.85, 0.68),
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 10, 16, 0),
                                 child: Container(
                                   width: 80,
                                   height: 80,

@@ -44,12 +44,8 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Color(0xE2F7FAFC),
+        backgroundColor: Color(0xFFF9FDFD),
         automaticallyImplyLeading: false,
-        title: Text(
-          'Add Task',
-          style: FlutterFlowTheme.title2,
-        ),
         actions: [
           FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -69,7 +65,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: Color(0xE2F7FAFC),
+      backgroundColor: Color(0xFFF9FDFD),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -82,6 +78,20 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                   children: [
                     Expanded(
                       child: AutoSizeText(
+                        'Add Task\n',
+                        style: FlutterFlowTheme.title3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                      child: AutoSizeText(
                         'Fill out the details below to add your first routine task.',
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Lexend Deca',
@@ -89,8 +99,8 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),

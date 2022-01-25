@@ -81,11 +81,7 @@ class _StoryDetailsWidgetState extends State<StoryDetailsWidget> {
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(8),
                                         child: Image.network(
-                                          valueOrDefault<String>(
-                                            pageViewUserStoriesRecord
-                                                .storyPhoto,
-                                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/sample-app-social-app-tx2kqp/assets/be7tvmob7nwb/richard-brutyo-Sg3XwuEpybU-unsplash.jpg',
-                                          ),
+                                          pageViewUserStoriesRecord.storyPhoto,
                                           width:
                                               MediaQuery.of(context).size.width,
                                           height: MediaQuery.of(context)

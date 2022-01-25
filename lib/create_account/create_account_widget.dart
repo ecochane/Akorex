@@ -1,5 +1,5 @@
 import '../auth/auth_util.dart';
-import '../createfirsttask/createfirsttask_widget.dart';
+import '../create_your_profile/create_your_profile_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -344,7 +344,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          CreatefirsttaskWidget(),
+                                          CreateYourProfileWidget(),
                                     ),
                                     (r) => false,
                                   );

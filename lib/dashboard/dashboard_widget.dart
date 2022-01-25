@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../create_task/create_task_widget.dart';
 import '../details/details_widget.dart';
 import '../details_copy/details_copy_widget.dart';
 import '../details_copy2/details_copy2_widget.dart';
@@ -61,6 +62,33 @@ class _DashboardWidgetState extends State<DashboardWidget>
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFF3FDFF),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CreateTaskWidget(),
+            ),
+          );
+        },
+        backgroundColor: FlutterFlowTheme.secondaryColor,
+        elevation: 8,
+        child: InkWell(
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CreateTaskWidget(),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.playlist_add,
+            color: Colors.white,
+            size: 24,
+          ),
+        ),
+      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: double.infinity,
@@ -117,6 +145,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                   currentUserPhoto,
                                   'https://firebasestorage.googleapis.com/v0/b/akorex-selfcare.appspot.com/o/124427555-person-gray-photo-placeholder-woman-in-shirt-on-white-background.jpg?alt=media&token=25b53984-e173-4da4-86c5-a6a5799cbd1d',
                                 ),
+                                fit: BoxFit.fitWidth,
                               ),
                             ),
                           ),
@@ -1045,7 +1074,7 @@ class _DashboardWidgetState extends State<DashboardWidget>
                                         queryBuilder: (toDoListRecord) =>
                                             toDoListRecord
                                                 .where('every',
-                                                    isEqualTo: 'Daily')
+                                                    isEqualTo: 'Monthly')
                                                 .where('toDoState',
                                                     isEqualTo: false)
                                                 .where('owner',

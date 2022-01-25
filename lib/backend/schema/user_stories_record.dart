@@ -36,6 +36,9 @@ abstract class UserStoriesRecord
   bool get isOwner;
 
   @nullable
+  String get thumb;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -45,7 +48,8 @@ abstract class UserStoriesRecord
     ..storyDescription = ''
     ..likes = ListBuilder()
     ..numComments = 0
-    ..isOwner = false;
+    ..isOwner = false
+    ..thumb = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('userStories');
@@ -76,6 +80,7 @@ Map<String, dynamic> createUserStoriesRecordData({
   DateTime storyPostedAt,
   int numComments,
   bool isOwner,
+  String thumb,
 }) =>
     serializers.toFirestore(
         UserStoriesRecord.serializer,
@@ -87,4 +92,5 @@ Map<String, dynamic> createUserStoriesRecordData({
           ..storyPostedAt = storyPostedAt
           ..likes = null
           ..numComments = numComments
-          ..isOwner = isOwner));
+          ..isOwner = isOwner
+          ..thumb = thumb));

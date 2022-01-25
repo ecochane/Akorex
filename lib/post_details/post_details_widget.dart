@@ -78,10 +78,8 @@ class _PostDetailsWidgetState extends State<PostDetailsWidget> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0),
                                 child: CachedNetworkImage(
-                                  imageUrl: valueOrDefault<String>(
-                                    postDetailsUserPostsRecord.postPhoto,
-                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/sample-app-social-app-tx2kqp/assets/ot903vcfouv7/oscar-sutton-yihlaRCCvd4-unsplash.jpg',
-                                  ),
+                                  imageUrl:
+                                      postDetailsUserPostsRecord.postPhoto,
                                   width: 100,
                                   height: 430,
                                   fit: BoxFit.cover,

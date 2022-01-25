@@ -15,7 +15,6 @@ import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -61,20 +60,43 @@ class _HomePageWidgetState extends State<HomePageWidget>
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.tertiaryColor,
         automaticallyImplyLeading: false,
-        title: Image.asset(
-          'assets/images/Akorex-removebg-preview.png',
-          width: 40,
-          height: 36,
-          fit: BoxFit.fitHeight,
+        title: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+          child: Image.asset(
+            'assets/images/Akorex-removebg-preview.png',
+            width: 40,
+            height: 36,
+            fit: BoxFit.fitHeight,
+          ),
         ),
         actions: [
-          Icon(
-            Icons.add_box,
-            color: FlutterFlowTheme.secondaryColor,
-            size: 34,
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 19, 0, 0),
+            child: InkWell(
+              onTap: () async {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: Container(
+                        height: 240,
+                        child: CreateModalWidget(),
+                      ),
+                    );
+                  },
+                );
+              },
+              child: Icon(
+                Icons.add_circle,
+                color: FlutterFlowTheme.secondaryColor,
+                size: 34,
+              ),
+            ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 0),
             child: FlutterFlowIconButton(
               borderColor: Colors.transparent,
               borderRadius: 30,
@@ -112,8 +134,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
         },
         backgroundColor: FlutterFlowTheme.secondaryColor,
         elevation: 8,
-        child: FaIcon(
-          FontAwesomeIcons.penSquare,
+        child: Icon(
+          Icons.add_a_photo,
           color: Colors.white,
           size: 24,
         ),
@@ -161,7 +183,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 8),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 8),
                         child: StreamBuilder<List<UserStoriesRecord>>(
                           stream: queryUserStoriesRecord(
                             queryBuilder: (userStoriesRecord) =>
@@ -249,8 +271,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.network(
-                                                listViewUserStoriesRecord
-                                                    .storyPhoto,
+                                                valueOrDefault<String>(
+                                                  listViewUserStoriesRecord
+                                                      .thumb,
+                                                  'https://firebasestorage.googleapis.com/v0/b/akorex-selfcare.appspot.com/o/124427555-person-gray-photo-placeholder-woman-in-shirt-on-white-background.jpg?alt=media&token=25b53984-e173-4da4-86c5-a6a5799cbd1d',
+                                                ),
                                                 fit: BoxFit.fitWidth,
                                               ),
                                             ),
